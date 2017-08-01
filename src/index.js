@@ -2,6 +2,10 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 
+import './index.less'
+import errorFunction from './errorfun.js'
+// errorFunction()
+
 //初始化dom元素
 document.body.innerHTML = '<div id="root"></div>'
 

@@ -13,14 +13,6 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, './dist')
     },
-    //webpack打包代码后很难知道报错的js是哪个模块的，（如果三个文件，a.js、b.js、c.js、打包到app.js）其中
-    //有一个文件报错，那么堆栈跟踪会指向到app.js。source-map功能将错误明确指向a.js
-    devtool: 'inline-source-map',
-    //webpack-dev-server启动配置
-    devServer: {
-        port: 1717,
-        hot: true //告诉devserver在使用HMR
-    },
     module: {
         rules: [{
             test: /\.js$/,
@@ -41,11 +33,14 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'output html plugin'
+            title: 'output html plugin',
+            hash: true //给js和css添加一个本次webpack编译的hash值，防止浏览器缓存
+            // minify: {
+            //     collapseWhitespace: true
+            // }
         }),
         new CleanWebpackPlugin(['./dist']),
-        //启用HMR
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        // new webpack.optimize.UglifyJsPlugin()
     ]
 }
