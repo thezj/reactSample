@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
@@ -43,7 +42,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'output html plugin'
         }),
-        new CleanWebpackPlugin(['./dist']),
         //启用HMR
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('style.css')
