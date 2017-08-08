@@ -48,20 +48,62 @@ let elementNameObject = React.createElement(
 )
 
 
+class Toggle extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            isToggleOn:true
+        }
+        // this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(){
+        console.log(this)
+        this.setState(prevState=>{
+            return {
+                isToggleOn:!prevState.isToggleOn
+            }
+        })
+    }
+
+    render(){
+        return (
+            //JS函数运行在不通的上下文环境中，会具有不同的this对象
+            //这里的this.handleClick(e) 函数具有上下文环境为 当前组件。那么在函数里面的语句也继承了这个父级上下文环境的内容。
+            <button onClick={(e) => { this.handleClick(e) }}>
+                {this.state.isToggleOn?'ON':'OFF'}
+            </button>
+        )
+    }
+}
+
 // let Clock = props =>{
 class Clock extends React.Component {
 
     constructor(props){
         super(props)
         this.state = {
-            date:new Date()
+            date:new Date(),
+            counter:8
         }
     }
 
     //own method
     tick(){
+        //wrong
+        // this.state.date = new Date()
+        //right
         this.setState({
             date:new Date()
+        })
+        // this.setState({
+        //     counter:this.state.counter + this.props.increment
+        // })
+        this.setState((prevState,props)=>{
+            // console.log(prevState,props)
+            return {
+                counter:prevState.counter+props.increment
+            }   
         })
     }
 
@@ -79,7 +121,13 @@ class Clock extends React.Component {
         <h1 style={{ borderColor: color0, borderWidth: '3px' }}>
             hello,{formatName(user0)},{2 + 2},{this.state.date.toLocaleTimeString()}
             <div>
+                {this.state.counter}
+            </div>
+            <div>
                 function Component in jsx:<WelcomeComponent name='LILIAN' />
+            </div>
+            <div>
+                <Toggle></Toggle>
             </div>
         </h1>
         )
@@ -92,7 +140,7 @@ class Clock extends React.Component {
 
 
 ReactDOM.render(
-    <Clock/>,
+    <Clock increment={5}/>,
     document.querySelector('#root')
 )
 console.log('rendered')
