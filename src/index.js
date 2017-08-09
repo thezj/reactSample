@@ -77,6 +77,66 @@ class Toggle extends React.Component{
     }
 }
 
+
+//conditional rendering
+class Greeting extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    
+   
+    render(){
+        if(this.props.isLoggedIn){
+            return(
+                <div>welcome back!</div>  
+            )
+        }else{
+            return(
+                <div>please sign up.</div>  
+            )
+        }
+    }
+    
+}
+
+
+//conditional 
+class LoginControl extends React.Component{
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            isLoggedIn:false
+        }
+    }
+
+    handleLoginClick(e){
+        console.log(e,this)
+        this.setState({
+            isLoggedIn:true
+        })
+    }
+
+    handleLogoutClick(e){
+         console.log(e,this)
+        this.setState({
+            isLoggedIn:false
+        })
+    }
+
+    render(){
+        
+        return(
+            <div>
+                <Greeting isLoggedIn={this.state.isLoggedIn}></Greeting>
+                {/* { !this.state.isLoggedIn ? <button onClick={e => this.handleLoginClick(e)}>Login</button> : <button onClick={e => this.handleLogoutClick(e)}>Logout</button>}  */}
+                <button onClick={e => {!this.state.isLoggedIn ? this.handleLoginClick(e) : this.handleLogoutClick(e)}}>{!this.state.isLoggedIn ? 'Login' :'Logout'}</button>
+            </div> 
+        )
+        
+    }
+}
+
 // let Clock = props =>{
 class Clock extends React.Component {
 
@@ -129,6 +189,8 @@ class Clock extends React.Component {
             <div>
                 <Toggle></Toggle>
             </div>
+            <Greeting isLoggedIn={new Date().getTime()%2 === 1 ? true : false}></Greeting>
+            <LoginControl></LoginControl>
         </h1>
         )
     }
