@@ -149,7 +149,7 @@ class Clock extends React.Component {
     }
 
     //own method
-    tick(){
+    tick(){  
         //wrong
         // this.state.date = new Date()
         //right
@@ -175,7 +175,13 @@ class Clock extends React.Component {
         clearInterval(this.timerID)
     }
 
+
     render(){
+
+        //rendering multiple components
+        let numbers = [1,2,3,3,5]
+        let listItems = numbers.map(function(n,index){return <li key={index}>{this.content+n}</li>},{content:'项目'})
+
         return (
         //这里用于放表达式的还是一对花括号，不过中间放的是对象值的时候 就看起来是两个了，样式的值要一个对象。。。
         <h1 style={{ borderColor: color0, borderWidth: '3px' }}>
@@ -191,6 +197,12 @@ class Clock extends React.Component {
             </div>
             <Greeting isLoggedIn={new Date().getTime()%2 === 1 ? true : false}></Greeting>
             <LoginControl></LoginControl>
+            <ol>{listItems}</ol>
+            <ul>
+                {
+                    numbers.map((n,index,array)=> <li key={index}>{n}of[{array}]</li>)
+                }
+            </ul>
         </h1>
         )
     }
