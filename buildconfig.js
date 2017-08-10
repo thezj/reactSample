@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MyExamplePlugin = require('./testwebpackplugin')
+console.log(MyExamplePlugin)
 
 module.exports = {
     entry: {
@@ -41,6 +43,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['./dist']),
         new ExtractTextPlugin('style.css'),
+        new MyExamplePlugin()
         // new webpack.optimize.UglifyJsPlugin()
     ]
 }
