@@ -137,6 +137,66 @@ class LoginControl extends React.Component{
     }
 }
 
+//controlled component
+class MyForm extends React.Component{
+
+     constructor(props){
+        super(props)
+        this.state = {
+            value:'initial',
+            valueTextarea:`我是多行信息  
+            斯蒂芬   
+            sad as 
+            `,
+            flavors:'coconut'
+        }
+    }
+
+    // handleSelect(event){
+    //     this.setState({
+    //         flavors:event.target.value
+    //     })
+    // }
+
+    // handleChangeTextarea(event){
+    //     this.setState({
+    //         valueTextarea:event.target.value
+    //     })
+    // }
+
+    handleChange(event){
+
+        const valueName = event.target.name
+
+        this.setState({
+            [valueName]:event.target.value
+        })
+    }
+
+    handleSubmit(event){
+        event.preventDefault()
+    }
+
+    render(){
+        return(
+            <form onSubmit={e=>this.handleSubmit(e)}>
+                <div>{this.state.flavors}</div>
+                <select value={this.state.flavors} name='flavors' onChange={e=>this.handleChange(e)}>
+                    <option value="grapefruit">grapefruit</option>
+                    <option value="lime">lime</option>
+                    <option value="coconut">coconut</option>
+                    <option value="mango">mango</option>
+                </select>
+                <pre>{this.state.valueTextarea}</pre>
+                <textarea value={this.state.valueTextarea} name='valueTextarea' onChange={e=>this.handleChange(e)} /><br />
+                <div>{this.state.value}</div>
+                <input type="text" value={this.state.value} name='value' onChange={e=>this.handleChange(e)}/><br />
+                <input type="submit" value='Submit'/>
+            </form>
+        )
+    }
+}
+
 // let Clock = props =>{
 class Clock extends React.Component {
 
@@ -175,7 +235,6 @@ class Clock extends React.Component {
         clearInterval(this.timerID)
     }
 
-
     render(){
 
         //rendering multiple components
@@ -185,6 +244,7 @@ class Clock extends React.Component {
         return (
         //这里用于放表达式的还是一对花括号，不过中间放的是对象值的时候 就看起来是两个了，样式的值要一个对象。。。
         <h1 style={{ borderColor: color0, borderWidth: '3px' }}>
+            <MyForm></MyForm>
             hello,{formatName(user0)},{2 + 2},{this.state.date.toLocaleTimeString()}
             <div>
                 {this.state.counter}

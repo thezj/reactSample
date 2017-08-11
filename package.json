@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "./node_modules/.bin/webpack --config buildconfig.js",
-    "dev": "webpack-dev-server --open --config devconfig.js"
+    "dev": "webpack-dev-server --open --progress --color --config devconfig.js"
   },
   "dependencies": {
     "archiver": "^2.0.0",
