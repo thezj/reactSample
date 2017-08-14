@@ -197,6 +197,70 @@ class MyForm extends React.Component{
     }
 }
 
+
+class BoilingVerdict extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return(
+            <p>{ this.props.celsius >=100 ? 'the water would boil.':'the water would not boil.' }</p>
+        )
+    }
+}
+
+
+class TemperatureInput extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    handleChange(e){
+        this.props.onChange({
+            temperature:+e.target.value,
+            scale:(this.props.scale === 'c'?'celsius':'fahrenheit')
+        })
+    }
+    render(){
+        let temperature = this.props.parenttemperature
+        if(this.props.scale === 'f'){
+            temperature = ((temperature*1.8 + 32))
+        }
+        return(
+            <div>
+                enter temperature in {this.props.scale === 'c'?'celsius':''}{this.props.scale === 'f'?'fahrenheit':''} 
+                <input type='number' value={temperature} onChange={e=>this.handleChange(e)} />
+            </div> 
+        )
+    }
+}
+
+class Calculator extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            celsius:0
+        }
+    }
+    handleChange(e){
+        let temperature = e.temperature
+        if(e.scale === 'fahrenheit'){
+            temperature = (((temperature - 32)/1.8))
+        }
+        this.setState({
+            celsius:temperature
+        })
+    }
+    render(){
+        return(
+            <div>
+                <TemperatureInput scale='c' parenttemperature={this.state.celsius} onChange={e=>this.handleChange(e)}></TemperatureInput>    
+                <TemperatureInput scale='f' parenttemperature={this.state.celsius} onChange={e=>this.handleChange(e)}></TemperatureInput>    
+                <BoilingVerdict celsius={this.state.celsius}></BoilingVerdict>
+            </div>
+        )
+    }
+}
+
 // let Clock = props =>{
 class Clock extends React.Component {
 
@@ -244,6 +308,7 @@ class Clock extends React.Component {
         return (
         //这里用于放表达式的还是一对花括号，不过中间放的是对象值的时候 就看起来是两个了，样式的值要一个对象。。。
         <h1 style={{ borderColor: color0, borderWidth: '3px' }}>
+            <Calculator></Calculator>
             <MyForm></MyForm>
             hello,{formatName(user0)},{2 + 2},{this.state.date.toLocaleTimeString()}
             <div>
