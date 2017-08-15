@@ -9,8 +9,6 @@ import errorFunction from './errorfun.js'
 //初始化dom元素
 document.body.innerHTML = '<div id="root"></div><div id="root2"></div>'
 
-
-
 let formatName = user => {
     return `${user.firstName} ${user.lastName}`
 }
@@ -20,8 +18,6 @@ let user0 = {
     lastName: 'Zeng'
 }
 let color0 = 'purple'
-
-
 
 //function component
 let WelcomeComponent = props =>{
@@ -35,9 +31,6 @@ class WelcomeComponentClass extends React.Component{
     }
 }
 
-
-
-
 let elementNameObject = React.createElement(
     'h1', {
         className: 'test',
@@ -46,7 +39,6 @@ let elementNameObject = React.createElement(
     `hello,${formatName(user0)},${2 + 3},${new Date().getTime()}`,
     React.createElement('div',{key:1},`class component in createElement:`,<WelcomeComponentClass key='1' name='LILI'></WelcomeComponentClass>)
 )
-
 
 class Toggle extends React.Component{
     constructor(props){
@@ -77,7 +69,6 @@ class Toggle extends React.Component{
     }
 }
 
-
 //conditional rendering
 class Greeting extends React.Component{
     constructor(props){
@@ -98,7 +89,6 @@ class Greeting extends React.Component{
     }
     
 }
-
 
 //conditional 
 class LoginControl extends React.Component{
@@ -197,7 +187,6 @@ class MyForm extends React.Component{
     }
 }
 
-
 class BoilingVerdict extends React.Component{
     constructor(props){
         super(props)
@@ -208,7 +197,6 @@ class BoilingVerdict extends React.Component{
         )
     }
 }
-
 
 class TemperatureInput extends React.Component{
     constructor(props){
@@ -261,6 +249,43 @@ class Calculator extends React.Component{
     }
 }
 
+//children prop
+class FancyBorder extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return (
+            <div style={{borderColor:this.props.color,borderWidth:1,borderStyle:'dotted',margin:10,display:'flex'}}>
+                <div style={{border:'1px dotted green',margin:10}}>
+                    {this.props.left}
+                </div>
+                <div>
+                    {this.props.center}
+                </div>
+                <div style={{border:'1px solid red',margin:10}}>
+                    {this.props.right}
+                </div>
+                <div>
+                    {this.props.children}
+                </div>
+            </div>
+        )
+    }
+}
+
+let WelcomeStr = props=>{
+    return(
+        <em>welcome</em>
+    )
+}
+
+let ThankStr = props=>{
+    return(
+        <em>thank you for visiting our spacecraft</em>
+    )
+}
+
 // let Clock = props =>{
 class Clock extends React.Component {
 
@@ -308,6 +333,19 @@ class Clock extends React.Component {
         return (
         //这里用于放表达式的还是一对花括号，不过中间放的是对象值的时候 就看起来是两个了，样式的值要一个对象。。。
         <h1 style={{ borderColor: color0, borderWidth: '3px' }}>
+            <FancyBorder color='blue'
+                left={
+                    <WelcomeStr></WelcomeStr>
+                }    
+                right={
+                    <ThankStr></ThankStr>
+                } 
+                center={
+                    <div>im at center</div>
+                } 
+            >
+            <i>im the normal children</i>             
+            </FancyBorder>
             <Calculator></Calculator>
             <MyForm></MyForm>
             hello,{formatName(user0)},{2 + 2},{this.state.date.toLocaleTimeString()}
@@ -333,11 +371,7 @@ class Clock extends React.Component {
     }
 }
 
-
 //react渲染根元素
-
-
-
 ReactDOM.render(
     <Clock increment={5}/>,
     document.querySelector('#root')
@@ -346,7 +380,6 @@ console.log('rendered')
 
 
 // setInterval(tick,1000)
-
 ReactDOM.render(
     elementNameObject,
     document.querySelector('#root2')
