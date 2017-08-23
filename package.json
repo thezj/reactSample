@@ -20,6 +20,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "style-loader": "^0.18.2",
+    "uglify-js-brunch": "^2.10.0",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"
   }

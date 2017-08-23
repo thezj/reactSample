@@ -43,7 +43,8 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['./dist']),
         new ExtractTextPlugin('style.css'),
-        new MyExamplePlugin()
-        // new webpack.optimize.UglifyJsPlugin()
+        new MyExamplePlugin(),
+        //通过缩短变量函数等命名减少代码量 objectA.functionB > a.b
+        new webpack.optimize.UglifyJsPlugin()
     ]
 }
