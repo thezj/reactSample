@@ -124,9 +124,20 @@ let Greeting = ReactClass({
     }
 })
 
+let PlainJSHello = ReactClass({
+    getDefaultProps(){
+        return{
+            toWhat:'im the plain js template'
+        }
+    },
+    render(){
+        return React.createElement('div',null,`Hello ${this.props.toWhat}`)
+    }
+})
+
 let helloworld = React.createElement('h1', {
     style: {
         border: '1px dotted red'
     }
-}, [<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
+}, [<PlainJSHello toWhat='im with out JSX' key='ip7'></PlainJSHello>,<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
 ReactDom.render(helloworld, document.querySelector('#root'))
