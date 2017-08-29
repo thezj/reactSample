@@ -135,9 +135,53 @@ let PlainJSHello = ReactClass({
     }
 })
 
+//context example
+class Button extends React.Component{
+    render(){
+        return(
+            <button style={{background:this.context.color}}>{this.props.children}</button>
+        )
+    }
+}
+Button.contextTypes = {
+    color: PropTypes.string
+}
+
+class Message extends React.Component{
+    render(){
+        return(
+            <div>
+                {this.props.text} <Button>{this.context.color}</Button>
+            </div>
+        )
+    }
+}
+Message.contextTypes = {
+    color: PropTypes.string
+}
+
+
+class MessageList extends React.Component{
+    getChildContext(){
+        return {color:'purple'}
+    }
+
+    render(){
+        let children = this.props.message.map((m,i)=>{
+            return <Message text={m} key={i}></Message>
+        })
+        return(
+            <div>{children}</div>
+        )
+    }
+}
+MessageList.childContextTypes = {
+    color:PropTypes.string
+}
+
 let helloworld = React.createElement('h1', {
     style: {
         border: '1px dotted red'
     }
-}, [<PlainJSHello toWhat='im with out JSX' key='ip7'></PlainJSHello>,<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
+}, [<MessageList message={[123,123,12344]} key='ip8'></MessageList>,<PlainJSHello toWhat='im with out JSX' key='ip7'></PlainJSHello>,<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
 ReactDom.render(helloworld, document.querySelector('#root'))
