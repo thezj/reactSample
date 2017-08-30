@@ -179,9 +179,38 @@ MessageList.childContextTypes = {
     color:PropTypes.string
 }
 
+document.registerElement('x-search',{
+    prototype:Object.create(HTMLButtonElement.prototype,{
+        createdCallback:{
+            value(){
+                this.textContent = 'a basic web component'
+                this.addEventListener('click',i=>{
+                    alert('basic event happen')
+                })
+                let mountPoint = document.createElement('span')
+                this.appendChild(mountPoint)
+                ReactDom.render(<a href='baidu.com'>hello</a>,mountPoint)
+            }
+        }
+    }),
+    extends:'button'
+})
+
+class TWC extends React.Component{
+    render(){
+        return (
+            <div>
+                <p>test web component</p>
+                <button is='x-search' class='ssss' style={{cursor:'pointer'}}></button> {/*custom web component use 'class' instead of 'className'*/}
+                <div className='sss'> real web component</div>
+            </div>
+        )
+    }
+}
+
 let helloworld = React.createElement('h1', {
     style: {
         border: '1px dotted red'
     }
-}, [<MessageList message={[123,123,12344]} key='ip8'></MessageList>,<PlainJSHello toWhat='im with out JSX' key='ip7'></PlainJSHello>,<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
+}, [<TWC name='hippop' key='ip9'></TWC>,<MessageList message={[123,123,12344]} key='ip8'></MessageList>,<PlainJSHello toWhat='im with out JSX' key='ip7'></PlainJSHello>,<Greeting key='ip6'></Greeting>,<Greeting key='ip5' name='jim'></Greeting>,<NameForm key='ip4'></NameForm>,<AutoFocusTextInput key='ip3'></AutoFocusTextInput>,<CustomTextInput key='ip0'></CustomTextInput>,'hello world',<componentsObject.DatePicker key='ip1'/>,React.createElement(componentsObject.DatePicker,{color:10000,key:'ip2'},null)])
 ReactDom.render(helloworld, document.querySelector('#root'))
