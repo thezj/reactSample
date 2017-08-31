@@ -208,6 +208,23 @@ class TWC extends React.Component{
     }
 }
 
+class CommentList extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            comments:DataSource.getComments() //DataSource is some global data source
+        }
+    }
+
+    render(){
+        return (
+            <div>
+                {this.state.comments.map((comment,i)=> <div key={i}>{comment}</div>)}
+            </div>
+        )
+    }
+}
+
 let helloworld = React.createElement('h1', {
     style: {
         border: '1px dotted red'
