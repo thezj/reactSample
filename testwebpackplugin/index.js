@@ -46,12 +46,22 @@ MyExampleWebpackPlugin.prototype.apply = function (compiler) {
                         var source = compilation
                             .assets[filename]
                             .source();
-                        console.log('source============',source)
+                        // console.log('source============',source)
                     });
             });
 
+        console.log('compilation.fileTimestamps=====================',compilation.fileTimestamps)
+
         callback();
+    }.bind(this));
+
+    compiler.plugin("compilation", function (compilation) {
+
+        compilation.plugin("optimize", function() {
+            console.log("Assets are being optimized.");
+          });
     });
+
 }
 
 module.exports = MyExampleWebpackPlugin

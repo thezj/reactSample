@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MyExamplePlugin = require('./testwebpackplugin')
 
 module.exports = {
     entry: {
@@ -46,7 +47,8 @@ module.exports = {
         new HtmlWebpackPlugin({title: 'output html plugin'}),
         //启用HMR
         new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        // new MyExamplePlugin()
         // new webpack.DefinePlugin({
         //     'process.env': {
         //         NODE_ENV: JSON.stringify('production')
