@@ -4,7 +4,8 @@ import Routerapp  from './routerexample'
 import UrlParams  from './urlparams'
 import Redirects  from './redirect'
 import CustomLink  from './customlink'
+import PreventTransition  from './preventingTransition'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<CustomLink/>, document.querySelector('#root'))
+ReactDom.render(<PreventTransition/>, document.querySelector('#root'))
