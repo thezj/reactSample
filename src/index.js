@@ -7,7 +7,8 @@ import CustomLink  from './customlink'
 import PreventTransition  from './preventingTransition'
 import NoMatch  from './NoMatch'
 import Recursive  from './recursivepath'
+import Sidebar  from './sidebar'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Recursive/>, document.querySelector('#root'))
+ReactDom.render(<Sidebar/>, document.querySelector('#root'))
