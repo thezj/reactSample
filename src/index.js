@@ -8,7 +8,8 @@ import PreventTransition  from './preventingTransition'
 import NoMatch  from './NoMatch'
 import Recursive  from './recursivepath'
 import Sidebar  from './sidebar'
+import Animatetransition  from './animatetransition'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Sidebar/>, document.querySelector('#root'))
+ReactDom.render(<Animatetransition/>, document.querySelector('#root'))
