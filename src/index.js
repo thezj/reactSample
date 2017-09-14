@@ -9,7 +9,8 @@ import NoMatch  from './NoMatch'
 import Recursive  from './recursivepath'
 import Sidebar  from './sidebar'
 import Animatetransition  from './animatetransition'
+import Ambiguous  from './ambiguouscase'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Animatetransition/>, document.querySelector('#root'))
+ReactDom.render(<Ambiguous/>, document.querySelector('#root'))
