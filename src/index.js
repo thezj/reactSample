@@ -10,7 +10,8 @@ import Recursive  from './recursivepath'
 import Sidebar  from './sidebar'
 import Animatetransition  from './animatetransition'
 import Ambiguous  from './ambiguouscase'
+import Routeconfig  from './routeconfig'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Ambiguous/>, document.querySelector('#root'))
+ReactDom.render(<Routeconfig/>, document.querySelector('#root'))
