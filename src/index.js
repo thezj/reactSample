@@ -11,7 +11,9 @@ import Sidebar  from './sidebar'
 import Animatetransition  from './animatetransition'
 import Ambiguous  from './ambiguouscase'
 import Routeconfig  from './routeconfig'
+import Modalgallery  from './modalgallery'
+import Modalgallerymin  from './modalgallerysimple'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Routeconfig/>, document.querySelector('#root'))
+ReactDom.render(<Modalgallerymin/>, document.querySelector('#root'))
