@@ -13,7 +13,8 @@ import Ambiguous  from './ambiguouscase'
 import Routeconfig  from './routeconfig'
 import Modalgallery  from './modalgallery'
 import Modalgallerymin  from './modalgallerysimple'
+import Staticrouter  from './staticrouter'
 
 
 document.body.innerHTML = '<div id="root"></div>'
-ReactDom.render(<Modalgallerymin/>, document.querySelector('#root'))
+ReactDom.render(<Staticrouter/>, document.querySelector('#root'))
